@@ -1,6 +1,7 @@
 const { useState, useEffect } = React
 
-import { bugService } from '../services/bug.service.local.js'
+// import { bugService } from '../services/bug.service.local.js'
+import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BugFilter } from '../cmps/BugFilter.jsx'
@@ -12,6 +13,7 @@ export function BugIndex() {
 
     useEffect(loadBugs, [filterBy])
 
+    console.log('filterBy',filterBy)
     function loadBugs() {
         bugService.query(filterBy)
             .then(setBugs)

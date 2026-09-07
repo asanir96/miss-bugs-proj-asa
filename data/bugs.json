@@ -6,12 +6,6 @@
     "_id": "1NF1N1T3"
   },
   {
-    "title": "Keyboard Not Found",
-    "description": "The application fails to detect the keyboard after the computer wakes from sleep.",
-    "severity": 3,
-    "_id": "K3YB0RD"
-  },
-  {
     "title": "404 Coffee Not Found",
     "description": "The coffee ordering page returns a 404 error when users try to access it from the menu.",
     "severity": 2,
@@ -22,5 +16,10 @@
     "description": "The server occasionally returns an unexpected response format when fetching user data.",
     "severity": 1,
     "_id": "G0053"
+  },
+  {
+    "title": "test",
+    "severity": "1",
+    "_id": "PjuAp"
   }
 ]

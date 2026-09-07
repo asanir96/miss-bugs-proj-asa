@@ -47,11 +47,11 @@ function remove(bugId) {
 }
 
 function save(bug) {
-    if (bug._id) {
-        return storageService.put(STORAGE_KEY, bug)
-    } else {
-        return storageService.post(STORAGE_KEY, bug)
-    }
+    const queryParams = `save?title=${bug.title}&severity=${bug.severity}`
+    if (bug._id) queryParams + `&id=${bug._id}`
+
+    return axios.get(BASE_URL + queryParams)
+        .then(res => res.data)
 }
 
 function _createBugs() {

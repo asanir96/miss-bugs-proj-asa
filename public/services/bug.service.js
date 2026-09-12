@@ -1,6 +1,6 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
-import axios from 'axios'
+import { showErrorMsg } from './event-bus.service.js'
 
 const BASE_URL = '/api/bug/'
 
@@ -38,6 +38,10 @@ function getById(bugId) {
         .then(res => {
             console.log('res', res)
             return res.data
+        })
+        .catch(err => {
+            console.log('err', err.response.data)
+            showErrorMsg(err.response.data)
         })
 }
 

@@ -22,7 +22,9 @@ function get(bugId) {
 function save(bugToSave) {
     if (bugToSave._id) {
         const bugIdx = bugs.findIndex(bug => bug._id === bugToSave._id)
-        bugs.splice(bugIdx, 1, bugToSave)
+        console.log('bugToSave',bugToSave)
+        const updatedBug = { ...bugs[bugIdx], ...bugToSave }
+        bugs.splice(bugIdx, 1, updatedBug)
     } else {
         bugToSave._id = utilService.makeId()
         bugs.push(bugToSave)

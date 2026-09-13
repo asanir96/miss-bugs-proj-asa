@@ -2,7 +2,7 @@
   {
     "title": "Infinite Loop Detected",
     "description": "The application becomes unresponsive when processing certain requests because a function repeatedly calls itself without reaching a stopping condition.",
-    "severity": 4,
+    "severity": 2,
     "_id": "1NF1N1T3"
   },
   {
@@ -37,5 +37,9 @@
     "severity": "3",
     "description": "sadcasfasffa",
     "_id": "qPG3r"
+  },
+  {
+    "severity": 1,
+    "_id": "9NNvn"
   }
 ]

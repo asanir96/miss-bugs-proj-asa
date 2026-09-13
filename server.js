@@ -5,6 +5,8 @@ import { bugService } from './bug-service.js'
 const app = express()
 app.use(express.static('public'))
 app.use(cookieParser())
+app.use(express.json())
+
 // app.get('/', (req, res) => res.send('Hello there'))
 
 app.set('query parser', 'extended') // allow sending arrays and objects in query params
@@ -16,10 +18,26 @@ app.get('/api/bug', (req, res) => {
         .then(bugs => res.send(bugs))
 })
 
-app.get('/api/bug/save', (req, res) => {
-    const { title, severity, description, _id } = req.query
+app.put('/api/bug/:bugId', (req, res) => {
+    const bug = {
+        title: req.body.title, 
+        severity: req.body.severity, 
+        description: req.body.description, 
+        _id: req.body._id
+    }
 
-    bugService.save({ title, severity, description, _id })
+    bugService.save(bug)
+        .then(savedBug => res.send(savedBug))
+})
+
+app.post('/api/bug/', (req, res) => {
+    const bug = {
+        title: req.body.title, 
+        severity: req.body.severity, 
+        description: req.body.description, 
+    }
+
+    bugService.save(bug)
         .then(savedBug => res.send(savedBug))
 })
 
@@ -40,7 +58,7 @@ app.get('/api/bug/:bugId', (req, res) => {
         .then(bug => res.send(bug))
 })
 
-app.get('/api/bug/:bugId/remove', (req, res) => {
+app.delete('/api/bug/:bugId/', (req, res) => {
     const { bugId } = req.params
 
     bugService.remove(bugId)

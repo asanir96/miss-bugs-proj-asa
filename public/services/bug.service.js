@@ -46,16 +46,20 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-    return axios.get(BASE_URL + bugId + '/remove')
+    return axios.delete(BASE_URL + bugId + '/')
         .then(res => res.data)
 }
 
 function save(bug) {
-    const queryParams = `save?title=${bug.title}&severity=${bug.severity}&description=${bug.description}`
-    if (bug._id) queryParams + `&id=${bug._id}`
+    if (bug._id) {
+        return axios.put(BASE_URL + bug._id, bug)
+            .then(res => res.data)
+    } else {
+        return axios.post(BASE_URL)
+            .then(res => res.data)
+    }
 
-    return axios.get(BASE_URL + queryParams)
-        .then(res => res.data)
+
 }
 
 function _createBugs() {

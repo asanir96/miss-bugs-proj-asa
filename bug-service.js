@@ -37,10 +37,8 @@ function query(filterBy = {}) {
         filteredBugs = _sortBugs(filteredBugs, filterBy.sortBy, filterBy.sortDir ? filterBy.sortDir : 1)
     }
 
-
     let startIdx
 
-    console.log('Math.floor(filteredBugs.length / PAGE_SIZE))', Math.floor(filteredBugs.length / PAGE_SIZE))
     if (filterBy.pageIdx > Math.ceil(filteredBugs.length / PAGE_SIZE) - 1) {
         startIdx = 0
     } else if (filterBy.pageIdx < 0) {
@@ -50,13 +48,7 @@ function query(filterBy = {}) {
     }
 
     const endIdx = startIdx + PAGE_SIZE
-    console.log('filteredBugs.length', filteredBugs.length)
-    console.log('PAGE_SIZE', PAGE_SIZE)
-    console.log('startIdx', startIdx)
-    console.log('filteredBugs.length ', filteredBugs.length)
-
     filteredBugs = filteredBugs.slice(startIdx, endIdx)
-
 
     return Promise.resolve(filteredBugs)
 }

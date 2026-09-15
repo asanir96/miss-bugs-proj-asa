@@ -14,15 +14,25 @@ app.set('query parser', 'extended') // allow sending arrays and objects in query
 app.listen(3030, () => console.log('Server ready at port 3030'))
 
 app.get('/api/bug', (req, res) => {
-    bugService.query()
+    const filterBy = {
+        txt: req.query.txt || '',
+        minSeverity: +req.query.minSeverity || 0,
+        labels: req.query.labels || [],
+        pageIdx: +req.query.pageIdx || 0,
+        sortBy: req.query.sortBy || 'createdAt',
+        sortDir: +req.query.sortDir || 1
+    }
+
+    bugService.query(filterBy)
         .then(bugs => res.send(bugs))
 })
 
 app.put('/api/bug/:bugId', (req, res) => {
     const bug = {
-        title: req.body.title, 
-        severity: req.body.severity, 
-        description: req.body.description, 
+        title: req.body.title,
+        severity: req.body.severity,
+        description: req.body.description,
+        labels: req.body.labels,
         _id: req.body._id
     }
 
@@ -32,9 +42,10 @@ app.put('/api/bug/:bugId', (req, res) => {
 
 app.post('/api/bug/', (req, res) => {
     const bug = {
-        title: req.body.title, 
-        severity: req.body.severity, 
-        description: req.body.description, 
+        title: req.body.title,
+        severity: req.body.severity,
+        description: req.body.description,
+        labels: req.body.labels
     }
 
     bugService.save(bug)

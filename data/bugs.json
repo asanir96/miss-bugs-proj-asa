@@ -1,45 +1,82 @@
 [
   {
-    "title": "Infinite Loop Detected",
-    "description": "The application becomes unresponsive when processing certain requests because a function repeatedly calls itself without reaching a stopping condition.",
+    "_id": "BUG001",
+    "title": "Cannot save a Car",
+    "description": "Problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1542107359454,
+    "labels": ["critical", "need-CR", "dev-branch"]
+  },
+  {
+    "_id": "BUG002",
+    "title": "Login button not responding",
+    "description": "Clicking the Login button does not submit the form",
+    "severity": 4,
+    "createdAt": 1542183759454,
+    "labels": ["high", "frontend", "authentication"]
+  },
+  {
+    "_id": "BUG003",
+    "title": "Incorrect user permissions",
+    "description": "Regular users can access admin-only settings",
+    "severity": 5,
+    "createdAt": 1542260159454,
+    "labels": ["critical", "security", "backend"]
+  },
+  {
+    "_id": "BUG004",
+    "title": "Search returns empty results",
+    "description": "Searching for existing records returns no results",
     "severity": 2,
-    "_id": "1NF1N1T3"
+    "createdAt": 1542336559454,
+    "labels": ["medium", "search", "regression"]
   },
   {
-    "title": "404 Coffee Not Found",
-    "description": "The coffee ordering page returns a 404 error when users try to access it from the menu.",
+    "_id": "BUG005",
+    "title": "Profile image not loading",
+    "description": "User profile images appear as broken images",
     "severity": 2,
-    "_id": "C0FF33"
+    "createdAt": 1542412959454,
+    "labels": ["frontend", "ui", "images"]
   },
   {
-    "title": "Unexpected Response",
-    "description": "The server occasionally returns an unexpected response format when fetching user data.",
+    "_id": "BUG006",
+    "title": "Export generates an empty file",
+    "description": "Exporting records produces a file with no data",
+    "severity": 4,
+    "createdAt": 1542489359454,
+    "labels": ["high", "export", "backend"]
+  },
+  {
+    "_id": "BUG007",
+    "title": "Filter resets unexpectedly",
+    "description": "Selected filters disappear after navigating between pages",
+    "severity": 3,
+    "createdAt": 1542565759454,
+    "labels": ["medium", "filters", "frontend"]
+  },
+  {
+    "_id": "BUG008",
+    "title": "Duplicate records created",
+    "description": "Submitting the form twice creates duplicate records",
+    "severity": 4,
+    "createdAt": 1542642159454,
+    "labels": ["high", "database", "regression"]
+  },
+  {
+    "_id": "BUG009",
+    "title": "Date displayed incorrectly",
+    "description": "Dates are displayed in the wrong timezone",
     "severity": 1,
-    "_id": "G0053"
+    "createdAt": 1542718559454,
+    "labels": ["low", "date", "ui"]
   },
   {
-    "title": "test",
-    "severity": "1",
-    "_id": "PjuAp"
-  },
-  {
-    "title": "fds",
-    "severity": "3",
-    "_id": "YEC9H"
-  },
-  {
-    "title": "a",
-    "severity": "NaN",
-    "_id": "CRSjh"
-  },
-  {
-    "title": "Bug 1788761916439",
-    "severity": "3",
-    "description": "sadcasfasffa",
-    "_id": "qPG3r"
-  },
-  {
-    "severity": 1,
-    "_id": "9NNvn"
+    "_id": "BUG010",
+    "title": "Application crashes on logout",
+    "description": "Logging out causes the application to display a blank screen",
+    "severity": 5,
+    "createdAt": 1542794959454,
+    "labels": ["critical", "authentication", "regression"]
   }
 ]

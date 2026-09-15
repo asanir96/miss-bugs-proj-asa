@@ -7,11 +7,58 @@ export const bugService = {
     remove
 }
 
+const PAGE_SIZE = 10
+
+
 const path = './data/bugs.json'
 const bugs = utilService.readJsonFile(path)
 
-function query() {
-    return Promise.resolve(bugs)
+function query(filterBy = {}) {
+    let filteredBugs = [...bugs]
+
+    if (filterBy.txt) {
+        const regExp = new RegExp(filterBy.txt, 'i')
+        filteredBugs = filteredBugs.filter(bug => regExp.test(bug.title) || regExp.test(bug.description))
+    }
+
+    if (filterBy.minSeverity) {
+        filteredBugs = filteredBugs.filter(bug => bug.severity >= filterBy.minSeverity)
+    }
+
+    if (filterBy.labels) {
+        filteredBugs = filterBy.labels.length ?
+            filteredBugs.filter(bug => {
+                if (bug.labels) return bug.labels.some(label => filterBy.labels.includes(label))
+                else return false
+            }) : filteredBugs
+    }
+
+    if (filterBy.sortBy) {
+        filteredBugs = _sortBugs(filteredBugs, filterBy.sortBy, filterBy.sortDir ? filterBy.sortDir : 1)
+    }
+
+
+    let startIdx
+
+    console.log('Math.floor(filteredBugs.length / PAGE_SIZE))', Math.floor(filteredBugs.length / PAGE_SIZE))
+    if (filterBy.pageIdx > Math.ceil(filteredBugs.length / PAGE_SIZE) - 1) {
+        startIdx = 0
+    } else if (filterBy.pageIdx < 0) {
+        startIdx = (Math.ceil(filteredBugs.length / PAGE_SIZE) - 1) * PAGE_SIZE
+    } else {
+        startIdx = filterBy.pageIdx * PAGE_SIZE
+    }
+
+    const endIdx = startIdx + PAGE_SIZE
+    console.log('filteredBugs.length', filteredBugs.length)
+    console.log('PAGE_SIZE', PAGE_SIZE)
+    console.log('startIdx', startIdx)
+    console.log('filteredBugs.length ', filteredBugs.length)
+
+    filteredBugs = filteredBugs.slice(startIdx, endIdx)
+
+
+    return Promise.resolve(filteredBugs)
 }
 
 function get(bugId) {
@@ -22,7 +69,6 @@ function get(bugId) {
 function save(bugToSave) {
     if (bugToSave._id) {
         const bugIdx = bugs.findIndex(bug => bug._id === bugToSave._id)
-        console.log('bugToSave',bugToSave)
         const updatedBug = { ...bugs[bugIdx], ...bugToSave }
         bugs.splice(bugIdx, 1, updatedBug)
     } else {
@@ -44,4 +90,18 @@ function remove(bugId) {
 
 function _saveBugs() {
     return utilService.writeJsonFile(path, bugs)
+}
+
+function _sortBugs(bugs, sortBy, sortDir) {
+    let sortedBugs = [...bugs]
+
+    if (sortBy === 'title') {
+        sortedBugs.sort((bug1, bug2) => sortDir * (bug1.title.localeCompare(bug2.title)))
+    } else if (sortBy === 'severity') {
+        sortedBugs.sort((bug1, bug2) => sortDir * (bug2.severity - bug1.severity))
+    } else if (sortBy === 'createdAt') {
+        sortedBugs.sort((bug1, bug2) => sortDir * (bug2.createdAt - bug1.createdAt))
+    }
+
+    return sortedBugs
 }

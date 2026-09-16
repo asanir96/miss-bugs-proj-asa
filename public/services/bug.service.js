@@ -42,7 +42,7 @@ function save(bug) {
         return axios.put(BASE_URL + bug._id, bug)
             .then(res => res.data)
     } else {
-        return axios.post(BASE_URL)
+        return axios.post(BASE_URL, bug)
             .then(res => res.data)
     }
 

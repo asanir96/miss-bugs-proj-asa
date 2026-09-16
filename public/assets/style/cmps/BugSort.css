@@ -1,0 +1,12 @@
+.bug-sort .clear-btn{
+    color: var(--clr-txt-dark);
+    margin-inline-start: 0.7em;
+}
+
+.sort-dir-btn{
+    opacity: 0.5;
+}
+
+.sort-dir-btn.selected{
+    opacity: 1;
+}

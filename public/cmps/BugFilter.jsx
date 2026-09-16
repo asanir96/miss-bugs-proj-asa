@@ -53,12 +53,10 @@ export function BugFilter({ filterBy, onSetFilterBy, uniqueLabels }) {
                 <input value={txt} onChange={handleChange} type="text" placeholder="Search title / desc." id="txt" name="txt" />
             </div>
 
-
             <div>
                 <label htmlFor="minSeverity">Min Severity: </label>
                 <input value={minSeverity || ''} onChange={handleChange} type="number" placeholder="By Min Severity" id="minSeverity" name="minSeverity" />
             </div>
-
 
             <div>
                 <label htmlFor="labels">Bug labels:</label>
@@ -69,7 +67,6 @@ export function BugFilter({ filterBy, onSetFilterBy, uniqueLabels }) {
                     })}
                 </select>
                 <button className="clear-btn" onClick={clearLabels}>Clear</button>
-
             </div>
 
             <div className="selected-labels">{filterByToEdit.labels && filterByToEdit.labels.map(label => {

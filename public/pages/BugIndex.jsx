@@ -5,6 +5,7 @@ import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BugFilter } from '../cmps/BugFilter.jsx'
+import { BugSort } from '../cmps/BugSort.jsx'
 import { BugPagination } from '../cmps/BugPagination.jsx'
 import { BugList } from '../cmps/BugList.jsx'
 
@@ -14,8 +15,6 @@ export function BugIndex() {
 
     const uniqueLabels = useRef()
     const lastPageIdx = useRef()
-
-    console.log('filterBy',filterBy)
 
     useEffect(loadBugs, [filterBy])
 
@@ -83,6 +82,11 @@ export function BugIndex() {
         </header>
 
         <BugFilter
+            filterBy={filterBy}
+            onSetFilterBy={onSetFilterBy}
+            uniqueLabels={uniqueLabels.current} />
+
+        <BugSort
             filterBy={filterBy}
             onSetFilterBy={onSetFilterBy}
             uniqueLabels={uniqueLabels.current} />

@@ -92,7 +92,7 @@ function _sortBugs(bugs, sortBy, sortDir) {
     if (sortBy === 'title') {
         sortedBugs.sort((bug1, bug2) => sortDir * (bug1.title.localeCompare(bug2.title)))
     } else if (sortBy === 'severity') {
-        sortedBugs.sort((bug1, bug2) => sortDir * (bug2.severity - bug1.severity))
+        sortedBugs.sort((bug1, bug2) => sortDir * (bug1.severity - bug2.severity))
     } else if (sortBy === 'createdAt') {
         sortedBugs.sort((bug1, bug2) => sortDir * (bug2.createdAt - bug1.createdAt))
     }

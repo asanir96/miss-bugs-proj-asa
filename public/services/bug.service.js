@@ -81,7 +81,7 @@ function _createBugs() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0, pageIdx: 0, sortBy: 'severity',labels:[] }
+    return { txt: '', minSeverity: 0, pageIdx: 0, sortBy: 'severity', sortDir: -1, labels: [] }
 }
 
 function getLastPageIdx() {

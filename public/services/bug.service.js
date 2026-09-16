@@ -83,5 +83,13 @@ function _createBugs() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0 }
+    return { txt: '', minSeverity: 0, pageIdx: 0, sortBy: 'severity' }
+}
+
+function getLastPageIdx() {
+    return axios.get(BASE_URL + '/last-page-idx', { params: filterBy })
+        .then(res => {
+            console.log(res)
+            return res.data
+        })
 }

@@ -24,7 +24,7 @@ app.get('/api/bug', (req, res) => {
     }
 
     bugService.query(filterBy)
-        .then(bugs => res.send(bugs))
+        .then(bugsInfo => res.send(bugsInfo))
 })
 
 app.put('/api/bug/:bugId', (req, res) => {

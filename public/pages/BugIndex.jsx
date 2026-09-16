@@ -5,18 +5,24 @@ import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BugFilter } from '../cmps/BugFilter.jsx'
+import { BugPagination } from '../cmps/BugPagination.jsx'
 import { BugList } from '../cmps/BugList.jsx'
 
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+    const lastPageIdx = useRef()
 
     useEffect(loadBugs, [filterBy])
 
     console.log('filterBy',filterBy)
     function loadBugs() {
         bugService.query(filterBy)
-            .then(setBugs)
+            .then(bugInfo => {
+setBugs(bugInfo.filteredBugs)
+                lastPageIdx.current = bugInfo.lastPageIdx
+                // uniqueLabels.current = getUniqueLabels(bugs)
+            })
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
     }
 
@@ -81,5 +87,10 @@ export function BugIndex() {
             bugs={bugs} 
             onRemoveBug={onRemoveBug} 
             onEditBug={onEditBug} />
+
+        <BugPagination
+            filterBy={filterBy}
+            onSetFilterBy={onSetFilterBy}
+            lastPageIdx={lastPageIdx.current} />
     </section>
 }

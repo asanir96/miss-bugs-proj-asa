@@ -1,0 +1,10 @@
+.bug-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.bug-pagination button{
+    color: var(--clr-txt-dark);
+}

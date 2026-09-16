@@ -7,7 +7,7 @@ export const bugService = {
     remove
 }
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 3
 
 
 const path = './data/bugs.json'
@@ -38,8 +38,9 @@ function query(filterBy = {}) {
     }
 
     let startIdx
+    const lastPageIdx = Math.ceil(filteredBugs.length / PAGE_SIZE) - 1
 
-    if (filterBy.pageIdx > Math.ceil(filteredBugs.length / PAGE_SIZE) - 1) {
+    if (filterBy.pageIdx > lastPageIdx) {
         startIdx = 0
     } else if (filterBy.pageIdx < 0) {
         startIdx = (Math.ceil(filteredBugs.length / PAGE_SIZE) - 1) * PAGE_SIZE
@@ -50,7 +51,7 @@ function query(filterBy = {}) {
     const endIdx = startIdx + PAGE_SIZE
     filteredBugs = filteredBugs.slice(startIdx, endIdx)
 
-    return Promise.resolve(filteredBugs)
+    return Promise.resolve({ 'filteredBugs': filteredBugs, 'lastPageIdx': lastPageIdx })
 }
 
 function get(bugId) {

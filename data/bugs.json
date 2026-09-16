@@ -5,15 +5,11 @@
     "description": "Problem when clicking Save",
     "severity": 3,
     "createdAt": 1542107359454,
-    "labels": ["critical", "need-CR", "dev-branch"]
-  },
-  {
-    "_id": "BUG002",
-    "title": "Login button not responding",
-    "description": "Clicking the Login button does not submit the form",
-    "severity": 4,
-    "createdAt": 1542183759454,
-    "labels": ["high", "frontend", "authentication"]
+    "labels": [
+      "critical",
+      "need-CR",
+      "dev-branch"
+    ]
   },
   {
     "_id": "BUG003",
@@ -21,7 +17,11 @@
     "description": "Regular users can access admin-only settings",
     "severity": 5,
     "createdAt": 1542260159454,
-    "labels": ["critical", "security", "backend"]
+    "labels": [
+      "critical",
+      "security",
+      "backend"
+    ]
   },
   {
     "_id": "BUG004",
@@ -29,7 +29,11 @@
     "description": "Searching for existing records returns no results",
     "severity": 2,
     "createdAt": 1542336559454,
-    "labels": ["medium", "search", "regression"]
+    "labels": [
+      "medium",
+      "search",
+      "regression"
+    ]
   },
   {
     "_id": "BUG005",
@@ -37,15 +41,23 @@
     "description": "User profile images appear as broken images",
     "severity": 2,
     "createdAt": 1542412959454,
-    "labels": ["frontend", "ui", "images"]
+    "labels": [
+      "frontend",
+      "ui",
+      "images"
+    ]
   },
   {
     "_id": "BUG006",
     "title": "Export generates an empty file",
     "description": "Exporting records produces a file with no data",
-    "severity": 4,
+    "severity": 5,
     "createdAt": 1542489359454,
-    "labels": ["high", "export", "backend"]
+    "labels": [
+      "high",
+      "export",
+      "backend"
+    ]
   },
   {
     "_id": "BUG007",
@@ -53,7 +65,11 @@
     "description": "Selected filters disappear after navigating between pages",
     "severity": 3,
     "createdAt": 1542565759454,
-    "labels": ["medium", "filters", "frontend"]
+    "labels": [
+      "medium",
+      "filters",
+      "frontend"
+    ]
   },
   {
     "_id": "BUG008",
@@ -61,7 +77,11 @@
     "description": "Submitting the form twice creates duplicate records",
     "severity": 4,
     "createdAt": 1542642159454,
-    "labels": ["high", "database", "regression"]
+    "labels": [
+      "high",
+      "database",
+      "regression"
+    ]
   },
   {
     "_id": "BUG009",
@@ -69,7 +89,11 @@
     "description": "Dates are displayed in the wrong timezone",
     "severity": 1,
     "createdAt": 1542718559454,
-    "labels": ["low", "date", "ui"]
+    "labels": [
+      "low",
+      "date",
+      "ui"
+    ]
   },
   {
     "_id": "BUG010",
@@ -77,6 +101,16 @@
     "description": "Logging out causes the application to display a blank screen",
     "severity": 5,
     "createdAt": 1542794959454,
-    "labels": ["critical", "authentication", "regression"]
+    "labels": [
+      "critical",
+      "authentication",
+      "regression"
+    ]
+  },
+  {
+    "title": "Bug 1789527063053",
+    "severity": 3,
+    "description": "sad",
+    "_id": "C1TIX"
   }
 ]

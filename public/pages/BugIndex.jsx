@@ -1,4 +1,4 @@
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
 // import { bugService } from '../services/bug.service.local.js'
 import { bugService } from '../services/bug.service.js'
@@ -11,17 +11,20 @@ import { BugList } from '../cmps/BugList.jsx'
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+
+    const uniqueLabels = useRef()
     const lastPageIdx = useRef()
+
+    console.log('filterBy',filterBy)
 
     useEffect(loadBugs, [filterBy])
 
-    console.log('filterBy',filterBy)
     function loadBugs() {
         bugService.query(filterBy)
             .then(bugInfo => {
-setBugs(bugInfo.filteredBugs)
+                setBugs(bugInfo.filteredBugs)
                 lastPageIdx.current = bugInfo.lastPageIdx
-                // uniqueLabels.current = getUniqueLabels(bugs)
+                uniqueLabels.current = bugInfo.uniqueLabels
             })
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
     }
@@ -73,19 +76,20 @@ setBugs(bugInfo.filteredBugs)
     }
 
     return <section className="bug-index main-content">
-        
+
         <header>
             <h2>Bug List</h2>
             <button onClick={onAddBug}>Add Bug</button>
         </header>
-        
-        <BugFilter 
-            filterBy={filterBy} 
-            onSetFilterBy={onSetFilterBy} />
 
-        <BugList 
-            bugs={bugs} 
-            onRemoveBug={onRemoveBug} 
+        <BugFilter
+            filterBy={filterBy}
+            onSetFilterBy={onSetFilterBy}
+            uniqueLabels={uniqueLabels.current} />
+
+        <BugList
+            bugs={bugs}
+            onRemoveBug={onRemoveBug}
             onEditBug={onEditBug} />
 
         <BugPagination

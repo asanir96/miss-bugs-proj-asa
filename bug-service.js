@@ -15,6 +15,7 @@ const bugs = utilService.readJsonFile(path)
 
 function query(filterBy = {}) {
     let filteredBugs = [...bugs]
+    const uniqueLabels = _getUniqueLabels(filteredBugs)
 
     if (filterBy.txt) {
         const regExp = new RegExp(filterBy.txt, 'i')
@@ -51,7 +52,7 @@ function query(filterBy = {}) {
     const endIdx = startIdx + PAGE_SIZE
     filteredBugs = filteredBugs.slice(startIdx, endIdx)
 
-    return Promise.resolve({ 'filteredBugs': filteredBugs, 'lastPageIdx': lastPageIdx })
+    return Promise.resolve({ 'filteredBugs': filteredBugs, 'lastPageIdx': lastPageIdx, 'uniqueLabels': uniqueLabels })
 }
 
 function get(bugId) {
@@ -97,4 +98,21 @@ function _sortBugs(bugs, sortBy, sortDir) {
     }
 
     return sortedBugs
+}
+
+
+function _getUniqueLabels(bugs) {
+    if (!bugs || !bugs.length) return
+
+    const uniqueLabels = []
+    bugs.reduce((acc, bug) => {
+        if (!bug.labels) return acc
+
+        bug.labels.forEach(label => {
+            if (!acc.includes(label)) acc.push(label)
+        })
+        return acc
+    }, uniqueLabels)
+
+    return uniqueLabels
 }

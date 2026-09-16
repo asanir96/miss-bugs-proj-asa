@@ -15,7 +15,6 @@ export const bugService = {
 function query(filterBy = {}) {
     return axios.get(BASE_URL, { params: filterBy })
         .then(res => {
-            console.log(res)
             return res.data
         })
 }
@@ -23,7 +22,6 @@ function query(filterBy = {}) {
 function getById(bugId) {
     return axios.get(BASE_URL + bugId)
         .then(res => {
-            console.log('res', res)
             return res.data
         })
         .catch(err => {
@@ -83,13 +81,12 @@ function _createBugs() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0, pageIdx: 0, sortBy: 'severity' }
+    return { txt: '', minSeverity: 0, pageIdx: 0, sortBy: 'severity',labels:[] }
 }
 
 function getLastPageIdx() {
     return axios.get(BASE_URL + '/last-page-idx', { params: filterBy })
         .then(res => {
-            console.log(res)
             return res.data
         })
 }

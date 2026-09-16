@@ -15,3 +15,19 @@
     margin-inline-start: .5em;
     font-size: .9em;
 }
+
+.bug-preview .bug-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.bug-preview .bug-label {
+    font-size: 0.7em;
+
+    border:1px solid var(--clr-txt-dark);
+    border-radius: 15px;
+    color:var(--clr-txt-dark);
+    background-color: var(--gray2);
+    padding:0.5em;
+}

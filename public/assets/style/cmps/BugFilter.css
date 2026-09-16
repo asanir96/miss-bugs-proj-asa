@@ -1,7 +1,7 @@
 .bug-filter {
-    display: flex;
+    display: grid;
     align-items: center;
-
+    gap: 1em;
     padding-block-end: 1em;
     border-block-end: 1px solid lightgray;
     margin-block-start: 1em;
@@ -13,7 +13,28 @@
     font-weight: bold;
 }
 
-:is(.bug-filter) label, input {
+:is(.bug-filter) label,
+input,
+select {
     margin-inline-start: 1em;
 }
 
+.bug-filter .selected-labels {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.bug-filter .selected-label {
+    border-radius: 15px;
+    border: 1px solid var(--clr-txt-dark);
+    padding: 0.5em;
+    background-color: var(--gray2);
+    color: var(--clr-txt-dark);
+    font-size: 0.8em;
+}
+
+.bug-filter .clear-btn{
+    color: var(--clr-txt-dark);
+    margin-inline-start: 0.7em;
+}

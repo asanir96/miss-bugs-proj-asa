@@ -3,7 +3,7 @@
     "_id": "BUG001",
     "title": "Cannot save a Car",
     "description": "Problem when clicking Save",
-    "severity": 3,
+    "severity": 6,
     "createdAt": 1542107359454,
     "labels": [
       "critical",
@@ -112,5 +112,17 @@
     "severity": 3,
     "description": "sad",
     "_id": "C1TIX"
+  },
+  {
+    "title": null,
+    "severity": 0,
+    "description": null,
+    "_id": "VPYcf"
+  },
+  {
+    "title": "Bug 1789537602112",
+    "severity": 3,
+    "description": "dsa",
+    "_id": "fRgK3"
   }
 ]

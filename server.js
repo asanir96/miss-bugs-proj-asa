@@ -27,6 +27,20 @@ app.get('/api/bug', (req, res) => {
         .then(bugsInfo => res.send(bugsInfo))
 })
 
+app.get('/api/bug/last-page-idx', (req, res) => {
+    const filterBy = {
+        txt: req.query.txt || '',
+        minSeverity: +req.query.minSeverity || 0,
+        labels: req.query.labels || [],
+        pageIdx: +req.query.pageIdx || 0,
+        sortBy: req.query.sortBy || 'createdAt',
+        sortDir: +req.query.sortDir || 1
+    }
+
+    bugService.query(filterBy)
+        .then(bugsInfo => res.send(bugsInfo))
+})
+
 app.put('/api/bug/:bugId', (req, res) => {
     const bug = {
         title: req.body.title,

@@ -25,7 +25,7 @@ app.get('/api/bug', (req, res) => {
 
     bugService.query(filterBy)
         .then(bugsInfo => res.send(bugsInfo))
-        .catch(err=>res.status(400).send('Cannot get bugs'))
+        .catch(err => res.status(400).send('Cannot get bugs'))
 })
 
 app.get('/api/bug/last-page-idx', (req, res) => {
@@ -82,12 +82,13 @@ app.get('/api/bug/:bugId', (req, res) => {
     const visitedBugs = req.cookies.visitedBugs || []
 
     // TODO: Change cookie so when limit is hit the user can still visit already visited bugs
-    if (visitedBugs.length >= 3) {
-        res.status(401).send('Wait for a bit')
-        return
+    if (!visitedBugs.includes(bugId)) {
+        if (visitedBugs.length >= 3) {
+            return res.status(401).send('Wait for a bit')
+        } else {
+            visitedBugs.push(bugId)
+        }
     }
-
-    if (!visitedBugs.includes(bugId)) visitedBugs.push(bugId)
 
     res.cookie('visitedBugs', visitedBugs, { maxAge: 7 * 1000 })
 

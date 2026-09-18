@@ -26,13 +26,8 @@ function query(filterBy = {}) {
         filteredBugs = filteredBugs.filter(bug => bug.severity >= filterBy.minSeverity)
     }
 
-    // TODO: Change guard to use optional chaining
-    if (filterBy.labels) {
-        filteredBugs = filterBy.labels.length ?
-            filteredBugs.filter(bug => {
-                if (bug.labels) return bug.labels.some(label => filterBy.labels.includes(label))
-                else return false
-            }) : filteredBugs
+    if (filterBy.labels && filterBy.labels.length > 0) {
+        filteredBugs = filteredBugs.filter(bug =>  bug.labels?.some(label => filterBy.labels.includes(label)) )
     }
 
     if (filterBy.sortBy) {

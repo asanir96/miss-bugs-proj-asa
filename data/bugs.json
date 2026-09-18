@@ -84,18 +84,6 @@
     ]
   },
   {
-    "_id": "BUG009",
-    "title": "Date displayed incorrectly",
-    "description": "Dates are displayed in the wrong timezone",
-    "severity": 1,
-    "createdAt": 1542718559454,
-    "labels": [
-      "low",
-      "date",
-      "ui"
-    ]
-  },
-  {
     "_id": "BUG010",
     "title": "Application crashes on logout",
     "description": "Logging out causes the application to display a blank screen",
@@ -108,22 +96,11 @@
     ]
   },
   {
-    "title": "Bug 1789527063053",
+    "title": "Bug 1789733875307",
     "severity": 3,
     "description": "sad",
-    "_id": "C1TIX"
-  },
-  {
-    "title": "Bug 1789537602112",
-    "severity": 3,
-    "description": "dsa",
-    "_id": "fRgK3"
-  },
-  {
-    "title": "Bug 1789733034520",
-    "severity": 3,
-    "description": "",
     "labels": [],
-    "_id": "yDWLz"
+    "_id": "qmB20",
+    "createdAt": 1789733879485
   }
 ]

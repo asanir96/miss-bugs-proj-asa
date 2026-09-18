@@ -69,8 +69,7 @@ function save(bugToSave) {
         bugs.splice(bugIdx, 1, updatedBug)
     } else {
         bugToSave._id = utilService.makeId()
-
-        //TODO: ADD createdAt
+        bugToSave.createdAt = Date.now()
         bugs.push(bugToSave)
     }
 
@@ -98,7 +97,7 @@ function _sortBugs(bugs, sortBy, sortDir) {
     } else if (sortBy === 'severity') {
         sortedBugs.sort((bug1, bug2) => sortDir * (bug1.severity - bug2.severity))
     } else if (sortBy === 'createdAt') {
-        sortedBugs.sort((bug1, bug2) => sortDir * (bug2.createdAt - bug1.createdAt))
+        sortedBugs.sort((bug1, bug2) => sortDir * (bug1.createdAt - bug2.createdAt))
     }
 
     return sortedBugs

@@ -25,6 +25,7 @@ app.get('/api/bug', (req, res) => {
 
     bugService.query(filterBy)
         .then(bugsInfo => res.send(bugsInfo))
+        .catch(err=>res.status(400).send('Cannot get bugs'))
 })
 
 app.get('/api/bug/last-page-idx', (req, res) => {
@@ -42,34 +43,45 @@ app.get('/api/bug/last-page-idx', (req, res) => {
 })
 
 app.put('/api/bug/:bugId', (req, res) => {
+    const { title, severity, description, labels, _id } = req.body
+
+    if (!_id || !title || !severity) return res.status(400).send('Missing required fields')
+
     const bug = {
-        title: req.body.title,
-        severity: req.body.severity,
-        description: req.body.description,
-        labels: req.body.labels,
-        _id: req.body._id
+        title,
+        severity: +severity,
+        description,
+        labels: labels || [],
+        _id
     }
 
     bugService.save(bug)
         .then(savedBug => res.send(savedBug))
+        .catch(err => res.status(400).send('Cannot save bugs'))
 })
 
 app.post('/api/bug/', (req, res) => {
+    const { title, severity, description, labels } = req.body
+
+    if (!title || !severity) return res.status(400).send('Missing required fields')
+
     const bug = {
-        title: req.body.title,
-        severity: req.body.severity,
-        description: req.body.description,
-        labels: req.body.labels
+        title,
+        severity: +severity || 1,
+        description,
+        labels: labels || []
     }
 
     bugService.save(bug)
         .then(savedBug => res.send(savedBug))
+        .catch(err => res.status(400).send('Cannot create a bug'))
 })
 
 app.get('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
     const visitedBugs = req.cookies.visitedBugs || []
 
+    // TODO: Change cookie so when limit is hit the user can still visit already visited bugs
     if (visitedBugs.length >= 3) {
         res.status(401).send('Wait for a bit')
         return
@@ -81,6 +93,7 @@ app.get('/api/bug/:bugId', (req, res) => {
 
     bugService.get(bugId)
         .then(bug => res.send(bug))
+        .catch(err => res.status(400).send('Cannot find bug'))
 })
 
 app.delete('/api/bug/:bugId/', (req, res) => {
@@ -88,4 +101,6 @@ app.delete('/api/bug/:bugId/', (req, res) => {
 
     bugService.remove(bugId)
         .then(bug => res.send(bug))
+        .catch(err => res.status(400).send('Cannot find bug'))
+
 })

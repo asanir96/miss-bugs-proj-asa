@@ -15,7 +15,7 @@
     "_id": "BUG003",
     "title": "Incorrect user permissions",
     "description": "Regular users can access admin-only settings",
-    "severity": 5,
+    "severity": 4,
     "createdAt": 1542260159454,
     "labels": [
       "critical",
@@ -118,5 +118,12 @@
     "severity": 3,
     "description": "dsa",
     "_id": "fRgK3"
+  },
+  {
+    "title": "Bug 1789733034520",
+    "severity": 3,
+    "description": "",
+    "labels": [],
+    "_id": "yDWLz"
   }
 ]

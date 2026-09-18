@@ -26,6 +26,7 @@ function query(filterBy = {}) {
         filteredBugs = filteredBugs.filter(bug => bug.severity >= filterBy.minSeverity)
     }
 
+    // TODO: Change guard to use optional chaining
     if (filterBy.labels) {
         filteredBugs = filterBy.labels.length ?
             filteredBugs.filter(bug => {
@@ -52,6 +53,7 @@ function query(filterBy = {}) {
     const endIdx = startIdx + PAGE_SIZE
     filteredBugs = filteredBugs.slice(startIdx, endIdx)
 
+    //TODO: Change fieldnames to be not strings
     return Promise.resolve({ 'filteredBugs': filteredBugs, 'lastPageIdx': lastPageIdx, 'uniqueLabels': uniqueLabels })
 }
 
@@ -67,6 +69,8 @@ function save(bugToSave) {
         bugs.splice(bugIdx, 1, updatedBug)
     } else {
         bugToSave._id = utilService.makeId()
+
+        //TODO: ADD createdAt
         bugs.push(bugToSave)
     }
 

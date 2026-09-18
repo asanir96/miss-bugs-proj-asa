@@ -48,8 +48,7 @@ function query(filterBy = {}) {
     const endIdx = startIdx + PAGE_SIZE
     filteredBugs = filteredBugs.slice(startIdx, endIdx)
 
-    //TODO: Change fieldnames to be not strings
-    return Promise.resolve({ 'filteredBugs': filteredBugs, 'lastPageIdx': lastPageIdx, 'uniqueLabels': uniqueLabels })
+    return Promise.resolve({ filteredBugs, lastPageIdx, uniqueLabels })
 }
 
 function get(bugId) {

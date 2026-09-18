@@ -30,8 +30,7 @@ export function BugSort({ filterBy, onSetFilterBy, uniqueLabels }) {
 
     return (
         <form className="bug-sort" onSubmit={onSubmitSort}>
-            <div>
-                <label htmlFor="labels">Bug labels:</label>
+                <label htmlFor="sortBy">Sort bugs:</label>
 
                 <select name="sortBy" id="" onChange={handleChange}>
                     <option value="title">Title</option>
@@ -41,9 +40,6 @@ export function BugSort({ filterBy, onSetFilterBy, uniqueLabels }) {
 
                 <input className={`sort-dir-btn ${sortByToEdit.sortDir === 1 ? 'selected' : ''}`} type="button" value="↑" onClick={handleChange} name="sortDir" />
                 <input className={`sort-dir-btn ${sortByToEdit.sortDir === -1 ? 'selected' : ''}`} type="button" value="↓" onClick={handleChange} name="sortDir" />
-
-                <button className="clear-btn" onClick={clearLabels}>Clear</button>
-            </div>
 
         </form>
     )

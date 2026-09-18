@@ -1,3 +1,13 @@
+.bug-sort{
+    margin-block-start: 1em;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+}
+
+.bug-sort label{
+    align-self: center;
+}
 .bug-sort .clear-btn{
     color: var(--clr-txt-dark);
     margin-inline-start: 0.7em;
@@ -5,6 +15,9 @@
 
 .sort-dir-btn{
     opacity: 0.5;
+    display: grid;
+    align-items: center;
+    align-content: center;
 }
 
 .sort-dir-btn.selected{

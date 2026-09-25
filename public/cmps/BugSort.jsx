@@ -32,9 +32,9 @@ export function BugSort({ filterBy, onSetFilterBy, uniqueLabels }) {
         <form className="bug-sort" onSubmit={onSubmitSort}>
                 <label htmlFor="sortBy">Sort bugs:</label>
 
-                <select name="sortBy" id="" onChange={handleChange}>
+                <select name="sortBy" id="" onChange={handleChange} defaultValue={"severity"}>
                     <option value="title">Title</option>
-                    <option value="severity" selected>Severity</option>
+                    <option value="severity" >Severity</option>
                     <option value="createdAt">Time of creation</option>
                 </select>
 

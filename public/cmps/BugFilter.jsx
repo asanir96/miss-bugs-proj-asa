@@ -61,7 +61,9 @@ export function BugFilter({ filterBy, onSetFilterBy, uniqueLabels }) {
             <div>
                 <label htmlFor="labels">Bug labels:</label>
 
-                <select name="labels" id="" onChange={handleChange}>
+                <select name="labels" id="" onChange={handleChange} defaultValue={''}>
+                    <option value="" disabled hidden>By bug labels</option>
+
                     {uniqueLabels && uniqueLabels.map(label => {
                         return <option key={`label-${label}`} value={label}>{label}</option>
                     })}

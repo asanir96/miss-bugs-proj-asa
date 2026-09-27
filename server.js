@@ -111,8 +111,8 @@ app.delete('/api/bug/:bugId/', (req, res) => {
 
 // Auth 
 app.post('/api/auth/signup', (req, res) => {
-    const { username, password, fullName } = req.body
-    const user = { username, password, fullName }
+    const { username, password, fullname } = req.body
+    const user = { username, password, fullname }
 
     userService.add(user)
         .then(user => {

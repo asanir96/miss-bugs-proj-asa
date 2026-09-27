@@ -4,7 +4,7 @@ export const authService = {
     login,
     getLoggedinUser,
     logout,
-    // signup,
+    signup,
 }
 
 function login(credentials) {
@@ -13,9 +13,15 @@ function login(credentials) {
         .then(_setLoggedinUser)
 }
 
-function logout(){
+function logout() {
     return axios.post('/api/auth/logout')
         .then(() => sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER))
+}
+
+function signup(user) {
+    return axios.post('/api/auth/signup', user)
+        .then(res => res.data)
+        .then(_setLoggedinUser)
 }
 
 function getLoggedinUser() {

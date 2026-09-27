@@ -1,33 +1,5 @@
 [
   {
-    "_id": "BUG001",
-    "title": "Cannot save a Car",
-    "description": "Problem when clicking Save",
-    "severity": 6,
-    "createdAt": 1542107359454,
-    "labels": [
-      "critical",
-      "need-CR",
-      "dev-branch"
-    ],
-    "creator": {
-      "_id": "ey7tW",
-      "fullname": "Asa Neer"
-    }
-  },
-  {
-    "_id": "BUG003",
-    "title": "Incorrect user permissions",
-    "description": "Regular users can access admin-only settings",
-    "severity": 4,
-    "createdAt": 1542260159454,
-    "labels": [
-      "critical",
-      "security",
-      "backend"
-    ]
-  },
-  {
     "_id": "BUG004",
     "title": "Search returns empty results",
     "description": "Searching for existing records returns no results",
@@ -49,7 +21,11 @@
       "frontend",
       "ui",
       "images"
-    ]
+    ],
+    "creator": {
+      "_id": "ey7tW",
+      "fullname": "Asa Neer"
+    }
   },
   {
     "_id": "BUG006",

@@ -15,14 +15,13 @@ const bugs = utilService.readJsonFile(path)
 
 function query(filterBy = {}) {
     let filteredBugs = [...bugs]
-    console.log(filterBy)
     if (filterBy.userId) {
         filteredBugs = filteredBugs.filter(bug => {
             if (bug.creator) return bug.creator._id === filterBy.userId
             else return false
         })
 
-        return Promise.resolve(filteredBugs)
+        return Promise.resolve( filteredBugs )
     }
 
     const uniqueLabels = _getUniqueLabels(filteredBugs)

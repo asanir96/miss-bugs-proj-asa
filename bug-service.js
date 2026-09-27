@@ -21,7 +21,7 @@ function query(filterBy = {}) {
             else return false
         })
 
-        return Promise.resolve( filteredBugs )
+        return Promise.resolve(filteredBugs)
     }
 
     const uniqueLabels = _getUniqueLabels(filteredBugs)
@@ -65,9 +65,15 @@ function get(bugId) {
     return Promise.resolve(bug)
 }
 
-function save(bugToSave) {
+function save(bugToSave, loggedInUser) {
     if (bugToSave._id) {
         const bugIdx = bugs.findIndex(bug => bug._id === bugToSave._id)
+        const bug = bugs[bugIdx]
+
+        if (!bug.creator || bug.creator._id !== loggedInUser._id) {
+            return Promise.reject('Not a bug you created')
+        }
+
         const updatedBug = { ...bugs[bugIdx], ...bugToSave }
         bugs.splice(bugIdx, 1, updatedBug)
     } else {
@@ -80,9 +86,14 @@ function save(bugToSave) {
         .then(() => bugToSave)
 }
 
-function remove(bugId) {
+function remove(bugId, loggedInUser) {
     const bugIdx = bugs.findIndex(bug => bug._id === bugId)
     const removedBug = bugs.at(bugIdx)
+
+    if (!removedBug.creator || removedBug.creator._id !== loggedInUser._id) {
+        return Promise.reject('Not a bug you created')
+    }
+    
     bugs.splice(bugIdx, 1)
     return _saveBugs()
         .then(() => removedBug)

@@ -46,6 +46,9 @@ app.get('/api/bug/last-page-idx', (req, res) => {
 })
 
 app.put('/api/bug/:bugId', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Not Authenticated')
+
     const { title, severity, description, labels, _id, creator } = req.body
 
     if (!_id || !title || !severity) return res.status(400).send('Missing required fields')
@@ -59,12 +62,15 @@ app.put('/api/bug/:bugId', (req, res) => {
         creator: creator || null
     }
 
-    bugService.save(bug)
+    bugService.save(bug, loggedinUser)
         .then(savedBug => res.send(savedBug))
         .catch(err => res.status(400).send('Cannot save bugs'))
 })
 
 app.post('/api/bug/', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Not Authenticated')
+
     const { title, severity, description, labels, creator } = req.body
 
     if (!title || !severity) return res.status(400).send('Missing required fields')
@@ -77,7 +83,7 @@ app.post('/api/bug/', (req, res) => {
         creator: creator || null
     }
 
-    bugService.save(bug)
+    bugService.save(bug, loggedinUser)
         .then(savedBug => res.send(savedBug))
         .catch(err => res.status(400).send('Cannot create a bug'))
 })
@@ -103,9 +109,12 @@ app.get('/api/bug/:bugId', (req, res) => {
 })
 
 app.delete('/api/bug/:bugId/', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Not Authenticated')
+
     const { bugId } = req.params
 
-    bugService.remove(bugId)
+    bugService.remove(bugId, loggedinUser)
         .then(bug => res.send(bug))
         .catch(err => res.status(400).send('Cannot find bug'))
 

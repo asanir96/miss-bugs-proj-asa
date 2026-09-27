@@ -12,34 +12,6 @@
     ]
   },
   {
-    "_id": "BUG005",
-    "title": "Profile image not loading",
-    "description": "User profile images appear as broken images",
-    "severity": 2,
-    "createdAt": 1542412959454,
-    "labels": [
-      "frontend",
-      "ui",
-      "images"
-    ],
-    "creator": {
-      "_id": "ey7tW",
-      "fullname": "Asa Neer"
-    }
-  },
-  {
-    "_id": "BUG006",
-    "title": "Export generates an empty file",
-    "description": "Exporting records produces a file with no data",
-    "severity": 5,
-    "createdAt": 1542489359454,
-    "labels": [
-      "high",
-      "export",
-      "backend"
-    ]
-  },
-  {
     "_id": "BUG007",
     "title": "Filter resets unexpectedly",
     "description": "Selected filters disappear after navigating between pages",
@@ -82,5 +54,41 @@
     "labels": [],
     "_id": "qmB20",
     "createdAt": 1789733879485
+  },
+  {
+    "title": "test",
+    "severity": 2,
+    "labels": [],
+    "_id": "BNIKs",
+    "createdAt": 1790513898922
+  },
+  {
+    "title": "Bug 1790516022519",
+    "severity": 3,
+    "description": "dsadad",
+    "labels": [],
+    "creator": null,
+    "_id": "34sWf",
+    "createdAt": 1790516027022
+  },
+  {
+    "title": "Bug 1790516127982",
+    "severity": 3,
+    "description": "sadfasfsa",
+    "labels": [],
+    "creator": null,
+    "_id": "RLnjM",
+    "createdAt": 1790516131777
+  },
+  {
+    "title": "Bug 1790516187396",
+    "severity": 6,
+    "description": "sadasd",
+    "labels": [],
+    "creator": {
+      "_id": "ey7tW"
+    },
+    "_id": "VdZpM",
+    "createdAt": 1790516191138
   }
 ]

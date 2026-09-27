@@ -46,7 +46,7 @@ app.get('/api/bug/last-page-idx', (req, res) => {
 })
 
 app.put('/api/bug/:bugId', (req, res) => {
-    const { title, severity, description, labels, _id } = req.body
+    const { title, severity, description, labels, _id, creator } = req.body
 
     if (!_id || !title || !severity) return res.status(400).send('Missing required fields')
 
@@ -55,7 +55,8 @@ app.put('/api/bug/:bugId', (req, res) => {
         severity: +severity,
         description,
         labels: labels || [],
-        _id
+        _id,
+        creator: creator || null
     }
 
     bugService.save(bug)
@@ -64,7 +65,7 @@ app.put('/api/bug/:bugId', (req, res) => {
 })
 
 app.post('/api/bug/', (req, res) => {
-    const { title, severity, description, labels } = req.body
+    const { title, severity, description, labels, creator } = req.body
 
     if (!title || !severity) return res.status(400).send('Missing required fields')
 
@@ -72,7 +73,8 @@ app.post('/api/bug/', (req, res) => {
         title,
         severity: +severity || 1,
         description,
-        labels: labels || []
+        labels: labels || [],
+        creator: creator || null
     }
 
     bugService.save(bug)

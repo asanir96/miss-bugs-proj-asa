@@ -1,4 +1,4 @@
-const { Link, NavLink, useParams, useNavigate } = ReactRouterDOM
+const { Link, NavLink, useNavigate } = ReactRouterDOM
 
 import { authService } from "../services/auth.service.js"
 import { showErrorMsg, showUserMsg } from "../services/event-bus.service.js"

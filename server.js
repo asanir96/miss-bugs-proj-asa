@@ -135,3 +135,8 @@ app.post('/api/auth/login', (req, res) => {
         })
         .catch(() => res.status(404).send('Cannot sign in'))
 })
+
+app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie('loginToken')
+    res.send('logged-out!')
+})

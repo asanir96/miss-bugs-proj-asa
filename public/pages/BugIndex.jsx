@@ -3,6 +3,7 @@ const { useState, useEffect, useRef } = React
 // import { bugService } from '../services/bug.service.local.js'
 import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { authService } from '../services/auth.service.js'
 
 import { BugFilter } from '../cmps/BugFilter.jsx'
 import { BugSort } from '../cmps/BugSort.jsx'
@@ -15,6 +16,8 @@ export function BugIndex() {
 
     const uniqueLabels = useRef()
     const lastPageIdx = useRef()
+
+    const getLoggedinUser = authService.getLoggedinUser()
 
     useEffect(loadBugs, [filterBy])
 
@@ -39,6 +42,8 @@ export function BugIndex() {
     }
 
     function onAddBug() {
+        const { fullName, _id } = getLoggedinUser
+
         const bug = {
             title: prompt('Bug title?', 'Bug ' + Date.now()),
             severity: +prompt('Bug severity?', 3),
@@ -79,7 +84,7 @@ export function BugIndex() {
 
         <header>
             <h2>Bug List</h2>
-            <button onClick={onAddBug}>Add Bug</button>
+            {getLoggedinUser && <button onClick={onAddBug}>Add Bug</button>}
         </header>
 
         <BugFilter

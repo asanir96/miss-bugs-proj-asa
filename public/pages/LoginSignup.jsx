@@ -5,7 +5,7 @@ import { authService } from "../services/auth.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 
-export function LoginSignup() {
+export function LoginSignup({ setLoggedInUser }) {
     const navigate = useNavigate()
 
     function onLogin(ev) {
@@ -18,7 +18,7 @@ export function LoginSignup() {
 
         authService.login({ username, password })
             .then(user => {
-                console.log(user)
+                setLoggedInUser(user)
                 showSuccessMsg('Logged in!')
                 navigate('/bug')
             })

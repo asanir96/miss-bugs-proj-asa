@@ -1,6 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import { bugService } from './bug-service.js'
+import { userService } from './users.service.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -103,5 +104,19 @@ app.delete('/api/bug/:bugId/', (req, res) => {
     bugService.remove(bugId)
         .then(bug => res.send(bug))
         .catch(err => res.status(400).send('Cannot find bug'))
+
+})
+
+
+// Auth 
+app.post('/api/auth/signup', (req, res) => {
+    const { username, password } = req.body
+    const user = { username, password }
+    
+    userService.add(user)
+        .then(user => {
+            res.send(user)
+        })
+        .catch(err => res.status(400).send('Username taken'))
 
 })

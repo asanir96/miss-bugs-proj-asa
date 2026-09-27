@@ -113,7 +113,7 @@ app.delete('/api/bug/:bugId/', (req, res) => {
 app.post('/api/auth/signup', (req, res) => {
     const { username, password, fullName } = req.body
     const user = { username, password, fullName }
-    
+
     userService.add(user)
         .then(user => {
             const loginToken = authService.getLoginToken(user)
@@ -122,4 +122,16 @@ app.post('/api/auth/signup', (req, res) => {
         })
         .catch(err => res.status(400).send('Username taken'))
 
+})
+
+app.post('/api/auth/login', (req, res) => {
+    const { username, password } = req.body
+
+    authService.checkLogin({ username, password })
+        .then(user => {
+            const loginToken = authService.getLoginToken(user)
+            res.cookie('loginToken', loginToken)
+            res.send(user)
+        })
+        .catch(() => res.status(404).send('Cannot sign in'))
 })

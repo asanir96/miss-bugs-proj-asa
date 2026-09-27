@@ -17,6 +17,7 @@ app.listen(3030, () => console.log('Server ready at port 3030'))
 
 app.get('/api/bug', (req, res) => {
     const filterBy = {
+        userId: req.query.userId || '',
         txt: req.query.txt || '',
         minSeverity: +req.query.minSeverity || 0,
         labels: req.query.labels || [],
@@ -129,7 +130,7 @@ app.post('/api/auth/login', (req, res) => {
 
     authService.checkLogin({ username, password })
         .then(user => {
-            console.log('user',user)
+            console.log('user', user)
             const loginToken = authService.getLoginToken(user)
             res.cookie('loginToken', loginToken)
             res.send(user)
@@ -140,4 +141,15 @@ app.post('/api/auth/login', (req, res) => {
 app.post('/api/auth/logout', (req, res) => {
     res.clearCookie('loginToken')
     res.send('logged-out!')
+})
+
+
+// Users
+
+app.get('/api/user/:userId', (req, res) => {
+    const { userId } = req.params
+
+    userService.getById(userId)
+        .then(user => res.send(user))
+        .catch(err => res.status(400).send('Cannot find user'))
 })

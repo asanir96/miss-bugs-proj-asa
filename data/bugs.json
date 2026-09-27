@@ -9,7 +9,11 @@
       "critical",
       "need-CR",
       "dev-branch"
-    ]
+    ],
+    "creator": {
+      "_id": "ey7tW",
+      "fullname": "Asa Neer"
+    }
   },
   {
     "_id": "BUG003",

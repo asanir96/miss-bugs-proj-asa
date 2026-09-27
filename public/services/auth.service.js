@@ -3,13 +3,19 @@ const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 export const authService = {
     login,
     getLoggedinUser,
-    // signup, logout, getLoggedinUser
+    logout,
+    // signup,
 }
 
 function login(credentials) {
     return axios.post('/api/auth/login', credentials)
         .then(res => res.data)
         .then(_setLoggedinUser)
+}
+
+function logout(){
+    return axios.post('/api/auth/logout')
+        .then(() => sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 function getLoggedinUser() {

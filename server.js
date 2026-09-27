@@ -129,6 +129,7 @@ app.post('/api/auth/login', (req, res) => {
 
     authService.checkLogin({ username, password })
         .then(user => {
+            console.log('user',user)
             const loginToken = authService.getLoginToken(user)
             res.cookie('loginToken', loginToken)
             res.send(user)

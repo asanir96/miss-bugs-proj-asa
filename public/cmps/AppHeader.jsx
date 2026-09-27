@@ -1,6 +1,18 @@
-const { Link,NavLink } = ReactRouterDOM
+const { Link, NavLink } = ReactRouterDOM
+
+import { authService } from "../services/auth.service.js"
+import { showErrorMsg } from "../services/event-bus.service.js"
 
 export function AppHeader({ loggedinUser, setLoggedinUser }) {
+    
+    function onLogout() {
+        authService.logout()
+            .then(() => setLoggedinUser(null))
+            .catch(err => {
+                console.log(err)
+                showErrorMsg(`Couldn't logout`)
+            })
+    }
 
     return <header className="app-header main-content single-row">
         <h1>Miss Bug</h1>
@@ -12,6 +24,7 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
                 !loggedinUser ?
                     <NavLink to="/auth" >Login</NavLink> :
                     <div className="user">
+                        <button onClick={onLogout}>Logout</button>
                         <Link to={`/user/${loggedinUser._id}`}>{loggedinUser.fullname}</Link>
                     </div>
             }

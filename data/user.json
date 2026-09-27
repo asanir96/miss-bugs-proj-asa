@@ -61,5 +61,16 @@
     "username": "luki",
     "password": "aaaa",
     "_id": "Bi1iG"
+  },
+  {
+    "username": "asaneer",
+    "password": "1234",
+    "_id": "ZBVHw"
+  },
+  {
+    "username": "asaneer1",
+    "password": "1234",
+    "fullName": "Asa Neer",
+    "_id": "AHBA0"
   }
 ]

@@ -65,7 +65,7 @@ export function UserDetails() {
 
     if (!user) return <div>Loading...</div>
 
-    return <div>
+    return <section className="main-content">
         <h1>User {user.fullname}</h1>
         <pre>
             {JSON.stringify(user, null, 2)}
@@ -78,5 +78,5 @@ export function UserDetails() {
                 onEditBug={onEditBug} />
         }
 
-    </div>
+    </section>
 }

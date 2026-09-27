@@ -43,7 +43,7 @@ export function LoginSignup({ setLoggedInUser }) {
     }
 
 
-    return <div className="login-page">
+    return <div className="login-page main-content">
 
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username: </label>
@@ -58,7 +58,7 @@ export function LoginSignup({ setLoggedInUser }) {
             <button>{isSignup ? 'Signup' : 'Login'}</button>
         </form>
 
-        <div className="btns">
+        <div className="login-btns">
             <button onClick={() => setIsSignup(!isSignup)}>
                 {isSignup ?
                     'Already a member? Login' :

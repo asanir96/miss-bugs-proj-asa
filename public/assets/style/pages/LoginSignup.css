@@ -1,0 +1,17 @@
+.login-page {
+    margin-top: 10px;
+}
+
+.login-page label[for="password"] {
+    margin-inline-start: 1em;
+}
+
+.login-btns button {
+    margin-block: 1em;
+    color: var(--clr-txt-dark);
+    opacity:1;
+}
+
+.login-btns button:hover{
+    opacity: 0.7;
+}

@@ -33,3 +33,18 @@
     color: var(--clr-txt-light);
     border-block-end: 1px solid var(--clr-txt-light);
 }
+.app-header .user{
+    display: flex;
+    flex-direction: row;
+    gap:0.5em;
+    align-items: center;
+    justify-content: center;
+}
+.logout-btn{
+    background-color: var(--clr-txt-dark);
+    color:var(--clr-txt-light);
+}
+
+.user-profile-btn .user-profile-icon{
+    margin-inline-end: 0.2em;
+}

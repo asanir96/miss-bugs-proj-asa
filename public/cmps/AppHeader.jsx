@@ -1,13 +1,18 @@
-const { Link, NavLink } = ReactRouterDOM
+const { Link, NavLink, useParams, useNavigate } = ReactRouterDOM
 
 import { authService } from "../services/auth.service.js"
-import { showErrorMsg } from "../services/event-bus.service.js"
+import { showErrorMsg, showUserMsg } from "../services/event-bus.service.js"
 
 export function AppHeader({ loggedinUser, setLoggedinUser }) {
-    
+    const navigate = useNavigate()
+
     function onLogout() {
         authService.logout()
-            .then(() => setLoggedinUser(null))
+            .then(() => {
+                setLoggedinUser(null)
+                navigate('/bug')
+                showUserMsg('Logged out')
+            })
             .catch(err => {
                 console.log(err)
                 showErrorMsg(`Couldn't logout`)

@@ -82,13 +82,26 @@
   },
   {
     "title": "Bug 1790516187396",
-    "severity": 6,
+    "severity": 7,
     "description": "sadasd",
     "labels": [],
     "creator": {
-      "_id": "ey7tW"
+      "_id": "ey7tW",
+      "fullname": "asaneer"
     },
     "_id": "VdZpM",
     "createdAt": 1790516191138
+  },
+  {
+    "title": "Bug 1790650159301",
+    "severity": 4,
+    "description": "sadas",
+    "labels": [],
+    "_id": "EcC5U",
+    "createdAt": 1790650163261,
+    "creator": {
+      "_id": "ey7tW",
+      "fullname": "Asa Neer"
+    }
   }
 ]

@@ -59,8 +59,9 @@ app.put('/api/bug/:bugId', (req, res) => {
         description,
         labels: labels || [],
         _id,
-        creator: creator || null
     }
+
+    if (creator) bug.creator = creator
 
     bugService.save(bug, loggedinUser)
         .then(savedBug => res.send(savedBug))
@@ -71,7 +72,7 @@ app.post('/api/bug/', (req, res) => {
     const loggedinUser = authService.validateToken(req.cookies.loginToken)
     if (!loggedinUser) return res.status(401).send('Not Authenticated')
 
-    const { title, severity, description, labels, creator } = req.body
+    const { title, severity, description, labels } = req.body
 
     if (!title || !severity) return res.status(400).send('Missing required fields')
 
@@ -80,7 +81,6 @@ app.post('/api/bug/', (req, res) => {
         severity: +severity || 1,
         description,
         labels: labels || [],
-        creator: creator || null
     }
 
     bugService.save(bug, loggedinUser)

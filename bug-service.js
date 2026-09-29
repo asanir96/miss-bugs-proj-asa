@@ -79,7 +79,14 @@ function save(bugToSave, loggedInUser) {
     } else {
         bugToSave._id = utilService.makeId()
         bugToSave.createdAt = Date.now()
+
+        bugToSave.creator = {
+            _id: loggedInUser._id,
+            fullname: loggedInUser.fullname
+        }
+
         bugs.push(bugToSave)
+
     }
 
     return _saveBugs()
@@ -93,7 +100,7 @@ function remove(bugId, loggedInUser) {
     if (!removedBug.creator || removedBug.creator._id !== loggedInUser._id) {
         return Promise.reject('Not a bug you created')
     }
-    
+
     bugs.splice(bugIdx, 1)
     return _saveBugs()
         .then(() => removedBug)

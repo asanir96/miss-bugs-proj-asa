@@ -1,4 +1,4 @@
-export function BugPreview({bug}) {
+export function BugPreview({ bug }) {
     return <article className="bug-preview">
         <p className="title">{bug.title}</p>
         <p>Severity: <span>{bug.severity}</span></p>
@@ -7,5 +7,9 @@ export function BugPreview({bug}) {
                 return <div className="bug-label" key={`bug-label-${label}`}>{label}</div>
             })}
         </div>
+        {bug.creator && <div className="bug-creator">
+            Creator: {bug.creator.fullname}
+        </div>}
+
     </article>
 }

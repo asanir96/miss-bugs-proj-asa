@@ -1,5 +1,6 @@
 const {useState} = React
-const Router = ReactRouterDOM.HashRouter
+// const Router = ReactRouterDOM.HashRouter
+const Router = ReactRouterDOM.BrowserRouter
 const { Route, Routes } = ReactRouterDOM
 
 import { UserMsg } from './cmps/UserMsg.jsx'

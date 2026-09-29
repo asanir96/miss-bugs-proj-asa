@@ -12,7 +12,7 @@ export const userService = {
 }
 
 function query() {
-    const usersToReturn = users.map(user => ({ _id: user._id, fullname: user.fullname }))
+    const usersToReturn = users.map(user => ({ _id: user._id, fullname: user.fullname,username:user.username }))
     return Promise.resolve(usersToReturn)
 }
 

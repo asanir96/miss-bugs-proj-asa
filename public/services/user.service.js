@@ -7,8 +7,8 @@ export const userService = {
 
 const BASE_URL = '/api/user/'
 
-function query() {
-    return axios.get(BASE_URL, { params: filterBy })
+function query(filterBy={}) {
+    return axios.get(BASE_URL)
         .then(res => {
             return res.data
         })

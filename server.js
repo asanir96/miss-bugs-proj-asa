@@ -157,6 +157,12 @@ app.post('/api/auth/logout', (req, res) => {
 
 // Users
 
+app.get('/api/user', (req, res) => {
+    userService.query()
+        .then(users => res.send(users))
+        .catch(err => res.status(400).send('Cannot get users'))
+})
+
 app.get('/api/user/:userId', (req, res) => {
     const { userId } = req.params
 

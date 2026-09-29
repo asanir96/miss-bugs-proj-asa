@@ -1,0 +1,18 @@
+.user-preview {
+    display: flex;
+    flex-direction: column;
+    gap: .6em;
+
+    flex-grow: 1;
+}
+
+.user-preview .preview-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:0.3em;
+
+    font-weight: bold;
+    font-size: 1.1em;
+}
+

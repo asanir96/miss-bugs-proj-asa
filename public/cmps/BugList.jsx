@@ -8,7 +8,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
 
     function isAllowed(bug) {
         if (!user) return false
-        if (bug.creator && bug.creator._id === user._id) return true
+        if ((user.isAdmin) || (bug.creator && bug.creator._id === user._id)) return true
 
         return false
     }

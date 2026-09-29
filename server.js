@@ -170,3 +170,15 @@ app.get('/api/user/:userId', (req, res) => {
         .then(user => res.send(user))
         .catch(err => res.status(400).send('Cannot find user'))
 })
+
+app.delete('/api/user/:userId/', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Not Authenticated')
+
+    const { userId } = req.params
+
+    userService.remove(userId, loggedinUser)
+        .then(bug => res.send(bug))
+        .catch(err => res.status(400).send(err))
+
+})

@@ -12,7 +12,7 @@ export const userService = {
 }
 
 function query() {
-    const usersToReturn = users.map(user => ({ _id: user._id, fullname: user.fullname,username:user.username }))
+    const usersToReturn = users.map(user => ({ _id: user._id, fullname: user.fullname, username: user.username }))
     return Promise.resolve(usersToReturn)
 }
 
@@ -32,14 +32,22 @@ function getByUsername(username) {
     return Promise.resolve(user)
 }
 
-function remove(userId) {
-    const userIdx = users.find(user => user._id === userId)
-    if (userIdx < 0) return Promise.reject('Could not delete user')
+function remove(userId,loggedInUser) {
+    const userIdx = users.findIndex(user => user._id === userId)
+    var removedUser = users.at(userIdx)
 
-    const user = users[userIdx]
-    users.splice(userIdx, 1)
-    utilService.writeJsonFile('data/user.json', users)
-    return Promise.resolve(user)
+    if (loggedInUser.isAdmin) {
+        users.splice(userIdx, 1)
+        
+        return _saveUsersToFile()
+            .then(() => {
+                removedUser = { ...removedUser }
+                delete removedUser.password
+                return removedUser
+            })
+    } else {
+        return Promise.reject('You are not an admin')
+    }
 }
 
 function add(user) {

@@ -2,7 +2,7 @@ const { useState, useEffect } = React
 
 import { userService } from "../services/user.service.js"
 import { authService } from '../services/auth.service.js'
-import { showErrorMsg } from "../services/event-bus.service.js"
+import { showErrorMsg,showSuccessMsg } from "../services/event-bus.service.js"
 
 import { UserList } from '../cmps/UserList.jsx'
 
@@ -12,13 +12,19 @@ export function UserIndex() {
 
     console.log('users', users)
     const getLoggedinUser = authService.getLoggedinUser()
-    
+
     if (!getLoggedinUser.isAdmin) {
         return <div>You are not an admin...</div>
     }
 
     function onRemoveUser(userId) {
-        console.log('todo')
+        userService.remove(userId)
+            .then(() => {
+                const usersToUpdate = users.filter(user => user._id !== userId)
+                setUsers(usersToUpdate)
+                showSuccessMsg('User removed')
+            })
+            .catch((err) => showErrorMsg(`Cannot remove user`, err))
     }
 
     useEffect(loadUsers, [])

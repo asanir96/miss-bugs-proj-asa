@@ -2,7 +2,8 @@ import { showErrorMsg } from "./event-bus.service.js"
 
 export const userService = {
     query,
-    getById
+    getById,
+    remove
 }
 
 const BASE_URL = '/api/user/'
@@ -25,3 +26,7 @@ function getById(userId) {
         })
 }
 
+function remove(userId) {
+    return axios.delete(BASE_URL + userId + '/')
+        .then(res => res.data)
+}

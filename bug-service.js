@@ -104,8 +104,6 @@ function remove(bugId, loggedInUser) {
     } else {
         return Promise.reject('Not a bug you created')
     }
-
-
 }
 
 function _saveBugs() {

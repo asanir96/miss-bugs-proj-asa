@@ -5,6 +5,9 @@
     "description": "Searching for existing records returns no results",
     "severity": 2,
     "createdAt": 1542336559454,
+    "creator":{
+      "_id":"ZBVHw"
+    },
     "labels": [
       "medium",
       "search",

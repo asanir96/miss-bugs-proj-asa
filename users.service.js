@@ -1,5 +1,6 @@
 import fs from 'fs'
 import { utilService } from './util.service.js'
+import { bugService } from './bug-service.js'
 
 const users = utilService.readJsonFile('data/user.json')
 
@@ -32,22 +33,33 @@ function getByUsername(username) {
     return Promise.resolve(user)
 }
 
-function remove(userId,loggedInUser) {
+function remove(userId, loggedInUser) {
     const userIdx = users.findIndex(user => user._id === userId)
     var removedUser = users.at(userIdx)
 
-    if (loggedInUser.isAdmin) {
-        users.splice(userIdx, 1)
-        
-        return _saveUsersToFile()
-            .then(() => {
-                removedUser = { ...removedUser }
-                delete removedUser.password
-                return removedUser
-            })
-    } else {
-        return Promise.reject('You are not an admin')
-    }
+    return bugService.query({ userId: removedUser._id })
+        .then(removedUserBugs => {
+            if (removedUserBugs && removedUserBugs.length > 0) {
+                return Promise.reject('This user still has bugs')
+            }
+
+            if (loggedInUser.isAdmin) {
+                users.splice(userIdx, 1)
+
+                return _saveUsersToFile()
+                    .then(() => {
+                        removedUser = { ...removedUser }
+                        delete removedUser.password
+                        return removedUser
+                    })
+            } else {
+                return Promise.reject('You are not an admin')
+            }
+        })
+
+
+
+
 }
 
 function add(user) {

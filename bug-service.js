@@ -97,13 +97,15 @@ function remove(bugId, loggedInUser) {
     const bugIdx = bugs.findIndex(bug => bug._id === bugId)
     const removedBug = bugs.at(bugIdx)
 
-    if (!removedBug.creator || removedBug.creator._id !== loggedInUser._id) {
+    if ((loggedInUser.isAdmin) || (removedBug.creator && removedBug.creator._id === loggedInUser._id)) {
+        bugs.splice(bugIdx, 1)
+        return _saveBugs()
+            .then(() => removedBug)
+    } else {
         return Promise.reject('Not a bug you created')
     }
 
-    bugs.splice(bugIdx, 1)
-    return _saveBugs()
-        .then(() => removedBug)
+
 }
 
 function _saveBugs() {

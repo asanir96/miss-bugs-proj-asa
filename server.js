@@ -116,7 +116,7 @@ app.delete('/api/bug/:bugId/', (req, res) => {
 
     bugService.remove(bugId, loggedinUser)
         .then(bug => res.send(bug))
-        .catch(err => res.status(400).send('Cannot find bug'))
+        .catch(err => res.status(400).send(err))
 
 })
 
